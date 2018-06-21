@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-
-def index
+  def index
    before_action :authenticate_user!
-end  
+  end
 end
