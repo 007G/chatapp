@@ -1,14 +1,22 @@
 class PostsController < ApplicationController
   
   def index
-    @post = Post.all
+    @post = Post.all.paginate(:page => params[:page], :per_page => 7)
   end  
   def new
     @post = Post.new
   end
   
   def create
-    @post = Post.new(post_params)
+           
+       #@post = Post.new(user_id: current_user.id)
+
+   #@user = User.find(current_user.id)
+   @post = Post.new(post_params)
+ # user_id= current_user.id
+  #@post = current_user.posts.new(post_params)
+ # @post = current_user.posts.build(params[:post])
+ #@post.user = current_user
 
    if @post.save
     redirect_to @post
@@ -44,7 +52,7 @@ class PostsController < ApplicationController
 
   private 
   def post_params
-    params.require(:post).permit(:title, :text)
+    params.require(:post).permit(:title, :text).merge({user_id: current_user.id})
   end
   
   
