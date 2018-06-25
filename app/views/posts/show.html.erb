@@ -6,7 +6,12 @@
 <p>
    <strong>Text:</strong>
    <%= @post.text %>
- </p>  
+ </p>
+
+ <p>
+  <strong>Image:</strong>
+  <%= image_tag @post.image.thumb.url.to_s %>  
+ </p>
 
 
 
