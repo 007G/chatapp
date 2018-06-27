@@ -2,23 +2,28 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.all.paginate(:page => params[:page], :per_page => 7)
-        @ability = Ability.new(current_user) 
+    @ability = Ability.new(current_user) 
+
+    respond_to do |format|
+    format.html
+    format.json
+    end
   end  
-  
+
   def new
     @post = Post.new
   end
   
   def create
            
-       #@post = Post.new(user_id: current_user.id)
+   #@post = Post.new(user_id: current_user.id)
 
    #@user = User.find(current_user.id)
    @post = Post.new(post_params)
- # user_id= current_user.id
-  #@post = current_user.posts.new(post_params)
- # @post = current_user.posts.build(params[:post])
- #@post.user = current_user
+   # user_id= current_user.id
+   #@post = current_user.posts.new(post_params)
+   # @post = current_user.posts.build(params[:post])
+   #@post.user = current_user
 
    if @post.save
     redirect_to @post
@@ -29,11 +34,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    respond_to do |format|
+    format.html
+    format.json
+    end
   end  
 
   def edit
     @post = Post.find(params[:id])
-   end 
+  end 
 
    def update
     @post = Post.find(params[:id])
@@ -42,30 +51,19 @@ class PostsController < ApplicationController
       redirect_to @post
     else
      render 'edit' 
-     end 
-   end
+    end 
+  end
 
    def destroy
-    @post= Post.find(params[:id])
+     @post= Post.find(params[:id])
 
     if(@post[:user_id]==current_user.id)
       @post.destroy
       redirect_to posts_path
     end
-   end
-
-   def published
-    @post = Post.find(params[:id])
-    @post.update_columns(published: true)
-    @post = Post.all
-
-    respond_to do |format|
-     format.html do
-      redirect_to articles_path 
-     end 
-     format.js
-    end
   end
+
+
 
     def verified
     @post = Post.find(params[:id])
@@ -73,9 +71,7 @@ class PostsController < ApplicationController
     @post = Post.all
 
     respond_to do |format|
-     format.html do
-      redirect_to post_path 
-     end 
+     format.html
      format.js
     end
   end
