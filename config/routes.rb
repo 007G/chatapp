@@ -8,4 +8,10 @@ resources :posts do
   resources :comments
  end 
 
+ resources :posts do
+  member do
+    get 'verified'
+  end
+end
+
 end

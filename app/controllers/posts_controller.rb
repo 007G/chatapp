@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.all.paginate(:page => params[:page], :per_page => 7)
+        @ability = Ability.new(current_user) 
   end  
+  
   def new
     @post = Post.new
   end
@@ -51,6 +53,35 @@ class PostsController < ApplicationController
       redirect_to posts_path
     end
    end
+
+   def published
+    @post = Post.find(params[:id])
+    @post.update_columns(published: true)
+    @post = Post.all
+
+    respond_to do |format|
+     format.html do
+      redirect_to articles_path 
+     end 
+     format.js
+    end
+  end
+
+    def verified
+    @post = Post.find(params[:id])
+    @post.update_columns(published: true)
+    @post = Post.all
+
+    respond_to do |format|
+     format.html do
+      redirect_to post_path 
+     end 
+     format.js
+    end
+  end
+
+
+
 
   private 
   def post_params

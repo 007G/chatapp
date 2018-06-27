@@ -12,11 +12,11 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
 
-    if(@comment[:user_id]==current_user.id)
+  # if(@comment[:user_id]==current_user.id)
 
     @comment.destroy
     redirect_to post_path(@post)
-  end
+    #end 
    end 
 
 
