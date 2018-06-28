@@ -14,17 +14,19 @@
   <tr>
     <th>Title</th>
     <th>Text</th>
-    <th></th>
+    <th>Image</th>
   </tr>
   </thead>
  <tbody>
   <% @post.each do |post| %>
-  
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= post.text %></td>
-          <td><%= link_to 'show', post_path(post), class: "btn btn-danger" %></td>
 
+        <tr>
+
+   <!--   <td><%= simple_format(h(post.title)) %></td> -->         
+          <td><%= link_to post.title ,post_path(post) ,{:style=>"color:#000; "} %></td> 
+          <td><%= post.text %></td>
+          <td><%= image_tag post.image.thumb.url.to_s %></td>
+          
           <% end %>
       </tr>
 
