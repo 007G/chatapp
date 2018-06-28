@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+       before_action :authenticate_user!,except: :show
+
   
   def index
     @post = Post.all.paginate(:page => params[:page], :per_page => 7)

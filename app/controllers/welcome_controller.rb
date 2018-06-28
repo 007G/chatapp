@@ -4,4 +4,12 @@ class WelcomeController < ApplicationController
   def index
     @post = Post.all
   end
+
+  def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+    format.html
+    format.json
+    end
+  end  
 end
