@@ -14,11 +14,10 @@
         <% if can? :read, post %>
           <td><%= post.title %></td>
           <td><%= post.text %></td>
-
-          <td><%= link_to 'show', post_path(post), class: "btn btn-danger" %></td>
-
+          
           <% if(current_user.id.to_i == post[:user_id].to_i) %>
 
+          <td><%= link_to 'show', post_path(post), class: "btn btn-danger" %></td>
           <td><%= link_to 'Edit', edit_post_path(post),class: "btn btn-danger" if can? :update, post %></td>
           <td><%= link_to 'Destroy', post_path(post),class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, remote: true  if can? :destroy, post %></td>
 

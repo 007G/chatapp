@@ -78,6 +78,14 @@ class PostsController < ApplicationController
     end
   end
 
+    def mypost
+      @post = Post.all
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end  
+
 
 
 

@@ -16,24 +16,24 @@
   <% end %>
   
 
-    <p>
+  <p class="text-primary">
       
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
  
-  <p>
+  <p class="text-primary">
     <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
 
-   <p>
+  <p class="text-primary">
    <%= form.label :image %><br>
-   <%= form.file_field :image %>
+   <%= form.file_field :image, class: "btn btn-primary" %>
  </p> 
  
   <p>
-    <%= form.submit  %>
+    <%= form.submit class: "btn btn-success" %>
   </p>
  
 <% end %>

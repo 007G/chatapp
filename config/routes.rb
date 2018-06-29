@@ -14,4 +14,11 @@ resources :posts do
   end
 end
 
+ resources :posts do
+  member do
+    get 'mypost'
+  end
+end
+
+
 end
