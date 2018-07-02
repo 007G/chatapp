@@ -4,7 +4,7 @@
 </CENTER>
 
 <%- if user_signed_in? %>
-  <li><%= link_to 'My Posts',posts_path %></li>
+  <li><%= link_to 'Manage Posts',posts_path %></li>
 <% else %>
   
 <% end %>
@@ -21,6 +21,7 @@
   <% @post.each do |post| %>
 
         <tr>
+            <% if post.published %>
 
    <!--   <td><%= simple_format(h(post.title)) %></td> -->         
           <td><%= link_to post.title ,post_path(post) ,{:style=>"color:#000; "} %></td> 
@@ -28,6 +29,7 @@
           <td><%= image_tag post.image.thumb.url.to_s %></td>
           
           <% end %>
+         <% end %> 
       </tr>
 
  </tbody>
