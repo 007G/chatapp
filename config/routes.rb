@@ -20,6 +20,7 @@ end
   end
 end
 
+mount ActionCable.server => '/cable'
 
 
 end
